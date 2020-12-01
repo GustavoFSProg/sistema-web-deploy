@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import React, { useEffect, useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import Header from '../Header'
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/no-unresolved
 import './style.css'
@@ -63,53 +64,50 @@ export default (props) => {
   // //  --------------------alteraçções--------------
 
   return (
-    <div className="profile-container">
-      <Link to="/register">Ir pra Regsiter</Link>
-      <br />
-      <Link to="/update">Ir pra Update</Link>
+    <div className="container">
+      <Header />
 
-      <header>
-        <Link type="button" to="/incidents" className="button">
-          Cadastrar novo Produto
-        </Link>
-        <button type="button" onClick={handleLogout}>
-          {/* <FiPower size={18} color="#E02041" /> */}
-        </button>
-      </header>
+      <div className="profile-container">
+        <h1>Produtos Cadastrados</h1>
+        <ul>
+          {lista.map((list) => (
+            <li key={list.id}>
+              <strong>CASO:</strong>
+              <p>{list.title}</p>
+              <img
+                src={`https://produtos-sistema-api.herokuapp.com/files/${list.image}`}
+                width={'20%'}
+                height={'25%'}
+                alt="imagem"
+              />
+              <br />
+              <strong>Descrição</strong>
+              <p>{list.description}</p>
+              <strong>Valor:</strong>
+              <p>
+                {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(list.price)}
+              </p>
 
-      <h1>Produtos Cadastrados</h1>
-      <ul>
-        {lista.map((list) => (
-          <li key={list.id}>
-            <strong>CASO:</strong>
-            <p>{list.title}</p>
-            <img
-              src={`https://produtos-sistema-api.herokuapp.com/files/${list.image}`}
-              width={'20%'}
-              height={'25%'}
-              alt="imagem"
-            />
-            <br />
-            <strong>Descrição</strong>
-            <p>{list.description}</p>
-            <strong>Valor:</strong>
-            <p>
-              {Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(list.price)}
-            </p>
-
-            <button type="button" onClick={() => handleDeleteProduct(list._id)}>
-              APAGAR - DELETAR
-            </button>
-            <br />
-            <button type="button" onClick={() => handleUpdateProduct(list._id)}>
-              EDITAR
-            </button>
-          </li>
-        ))}
-      </ul>
+              <button
+                type="button"
+                onClick={() => handleDeleteProduct(list._id)}
+              >
+                APAGAR - DELETAR
+              </button>
+              <br />
+              <button
+                type="button"
+                onClick={() => handleUpdateProduct(list._id)}
+              >
+                EDITAR
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

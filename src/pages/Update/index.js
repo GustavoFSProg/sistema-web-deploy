@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../service/api'
+import Header from '../Header'
+
 import './style.css'
 
 import * as S from './styled'
@@ -58,96 +60,49 @@ export default function Update() {
   }
 
   return (
-    <S.Container>
-      <h1>Produto </h1>
+    <div className="container">
+      <Header />
 
-      <form onSubmit={handleSubmit} className="create-orphanage-form">
-        <p key={lista.id}> </p>
-        <label htmlFor="name">Titulo</label>
-        <input
-          id="title"
-          value={title}
-          placeholder={lista.title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <br />
-        <strong>Descrição</strong>
-        <input
-          id="description"
-          value={description}
-          placeholder={lista.description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <strong>Preço:</strong>
-
-        <input
-          id="price"
-          value={price}
-          placeholder={lista.price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-
-        <br />
-        {/* <button type="submit" onClick={() => handleUpdateProduct(lista._id)}>
-          EDITAR
-        </button> */}
-
-        <button type="submit">EDITAR</button>
-      </form>
-      {/* ))} */}
-
-      {/*      
-      <h2> Entrou na Update</h2>
-      <div id="page-create-orphanage">
-        <form onSubmit={handleSubmit} className="create-orphanage-form">
+      <form onSubmit={handleSubmit} className="janela">
+        <div className="profile-container">
           <fieldset>
-            <legend>Dados</legend>
+            <legend>Editar Produto</legend>
+
+            <div className="input-block">
+              <p key={lista.id}> </p>
+              <label htmlFor="name">Titulo</label>
+              <input
+                id="title"
+                value={title}
+                placeholder={lista.title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div className="input-block">
+              <strong>Descrição</strong>
+              <input
+                id="description"
+                value={description}
+                placeholder={lista.description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <strong>Preço:</strong>
+
+              <input
+                id="price"
+                value={price}
+                placeholder={lista.price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+
+            <button type="submit">EDITAR</button>
           </fieldset>
-          <div className="input-block">
-          {lista.map((list) => ({
-
-            return (
-
-          <li key={list.id}></li>
-            <label htmlFor="name">Titulo</label>
-            <input
-              id="title"
-              value={list.title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="name">Descrição</label>
-            <input
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="name">Preço</label>
-            <input
-              id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-            
-            <input
-            type="file"
-            id="image"
-            className="botao-imagem"
-            onChange={(e) => setImage(e.target.files[0])}
-            />
-            </div>
-            <button className="confirm-button" type="submit">
-            Cadastrar
-            </button>
-            </form>
-            </div>
-            )))}} */}
-      <S.LinkTo to="/">Ir pra Home</S.LinkTo>
-    </S.Container>
+        </div>
+      </form>
+    </div>
   )
 }

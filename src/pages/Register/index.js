@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../../service/api'
 import './style.css'
+import Header from '../Header'
 
 import * as S from './styled'
 
@@ -35,52 +36,60 @@ export default function Register() {
   }
 
   return (
-    <S.Container>
-      <h2> Entrou na Register</h2>
-      <div id="page-create-orphanage">
-        <form onSubmit={handleSubmit} className="create-orphanage-form">
+    <div className="container">
+      <Header />
+
+      <form onSubmit={handleSubmit} className="janela">
+        <div className="profile-container">
           <fieldset>
-            <legend>Dados</legend>
+            <legend>Cadastrar Produto</legend>
+
+            <div className="input-block">
+              <label htmlFor="name">Titulo</label>
+              <br />
+              <input
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="name">Descrição</label>
+              <br />
+              <input
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="name">Preço</label>
+              <br />
+              <input
+                id="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <input
+                type="file"
+                id="image"
+                className="botao-imagem"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
+            <div className="input-block">
+              <button className="confirm-button" type="submit">
+                Cadastrar
+              </button>
+            </div>
           </fieldset>
-          <div className="input-block">
-            <label htmlFor="name">Titulo</label>
-            <input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="name">Descrição</label>
-            <input
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="name">Preço</label>
-            <input
-              id="price"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-            />
-
-            <input
-              type="file"
-              id="image"
-              className="botao-imagem"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-          </div>
-          <button className="confirm-button" type="submit">
-            Cadastrar
-          </button>
-        </form>
-      </div>
-      <S.LinkTo to="/">Ir pra Home</S.LinkTo>
-    </S.Container>
+        </div>
+      </form>
+    </div>
   )
 }
