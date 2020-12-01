@@ -4,8 +4,6 @@ import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
 
-import * as S from './styled'
-
 export default function Register() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')

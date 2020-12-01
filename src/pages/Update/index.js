@@ -5,8 +5,6 @@ import Header from '../Header'
 
 import './style.css'
 
-import * as S from './styled'
-
 export default function Update() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -35,12 +33,6 @@ export default function Update() {
     event.preventDefault()
 
     const id = localStorage.getItem('id')
-
-    // const data = new FormData()
-
-    // data.append('title', title)
-    // data.append('description', description)
-    // data.append('price', price)
 
     const data = {
       title,

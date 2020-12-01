@@ -51,12 +51,6 @@ export default (props) => {
     }
   }
 
-  async function handleLogout() {
-    localStorage.clear()
-
-    window.location('/')
-  }
-
   useEffect(() => {
     localStorage.clear()
   }, [])
