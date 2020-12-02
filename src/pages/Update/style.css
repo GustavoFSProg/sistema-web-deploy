@@ -39,6 +39,7 @@ form legend {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: auto;
 }
 
 .input-block {
