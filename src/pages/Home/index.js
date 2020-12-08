@@ -25,7 +25,7 @@ export default function Register() {
         // localStorage.setItem(('Token': 'valueTeste'))
         // localStorage.setItem('ongId', data.email)
 
-        localStorage.setItem('token', data.token)
+        // localStorage.setItem('token', data.token)
         // history.push('/lista')
         return alert('Login realizado com sucesso!')
       }
