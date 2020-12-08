@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
@@ -8,7 +7,7 @@ export default function Register() {
   const [email, setEmail] = useState('antonia@gmail.com')
   const [password, setPassword] = useState('antonia@123')
 
-  const history = useHistory()
+  // const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault()
