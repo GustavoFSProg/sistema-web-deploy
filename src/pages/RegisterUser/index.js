@@ -1,44 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
 
-export default function Register() {
-  const [email, setEmail] = useState('antonia@gmail.com')
-  const [password, setPassword] = useState('antonia@123')
+export default function RegisterUser() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  // const history = useHistory()
+  const history = useHistory()
 
-  async function handleSubmit(e) {
-    e.preventDefault()
-
-    // console.log(email, password)
-
+  async function handleSubmit(event) {
+    event.preventDefault()
     try {
-      const { data } = await api.post('/login', { email, password })
-
-      if (!data.data) {
-        return alert('ERRO tudo CAGADO')
-      } else {
-        console.log('token: ', data.token)
-
-        // localStorage.setItem(('Token': 'valueTeste'))
-        // localStorage.setItem('ongId', data.email)
-
-        localStorage.setItem('token', data.token)
-        // history.push('/lista')
-        return alert('Login realizado com sucesso!')
+      const data = {
+        name,
+        email,
+        password,
       }
 
-      // eslint-disable-next-line no-unreachable
+      console.log(data)
+
+      await api.post('/user-register', data)
+
+      alert('Cadastro realizado com sucesso!')
+      return history.push('/')
     } catch (error) {
+      console.log(error)
       return alert(`Deu erro no front ${error}`)
     }
   }
-
-  useEffect(() => {
-    localStorage.clear()
-  }, [])
 
   return (
     <div className="container">
@@ -47,7 +39,17 @@ export default function Register() {
       <form onSubmit={handleSubmit} className="janela">
         <div className="profile-container">
           <fieldset>
-            <legend>Login de Usuario</legend>
+            <legend>Cadastrar Usuário</legend>
+
+            <div className="input-block">
+              <label htmlFor="name">Nome</label>
+              <br />
+              <input
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
 
             <div className="input-block">
               <label htmlFor="name">Email</label>
@@ -60,10 +62,11 @@ export default function Register() {
             </div>
 
             <div className="input-block">
-              <label htmlFor="name">Password</label>
+              <label htmlFor="name">Senha</label>
               <br />
               <input
                 id="password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -71,7 +74,7 @@ export default function Register() {
 
             <div className="input-block">
               <button className="confirm-button" type="submit">
-                Logar
+                Cadastrar
               </button>
             </div>
           </fieldset>
