@@ -10,6 +10,9 @@ export default function Header() {
         <Link className="lista" to="/">
           Home
         </Link>
+        <Link className="lista" to="/lista">
+          Listagem
+        </Link>
         <Link className="lista" to="/register">
           Regsiter
         </Link>

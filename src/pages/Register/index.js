@@ -15,18 +15,22 @@ export default function Register() {
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const data = new FormData()
-
-    data.append('title', title)
-    data.append('description', description)
-    data.append('price', price)
-    data.append('image', image)
-
     try {
-      await api.post('/register', data)
+      const data = new FormData()
 
-      alert('Cadastro realizado com sucesso!')
-      return history.push('/')
+      if (!typeof price === Number) {
+        return alert('O preço deve ser um numero!!')
+      } else {
+        data.append('title', title)
+        data.append('description', description)
+        data.append('price', price)
+        data.append('image', image)
+
+        await api.post('/register', data)
+
+        alert('Cadastro realizado com sucesso!')
+        return history.push('/')
+      }
     } catch (error) {
       console.log(error)
       return alert(`Deu erro no front ${error}`)

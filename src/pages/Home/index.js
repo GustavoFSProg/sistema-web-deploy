@@ -1,53 +1,39 @@
-/* eslint-disable import/no-anonymous-default-export */
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Header from '../Header'
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/no-unresolved
-import './style.css'
-
 import api from '../../service/api'
+import './style.css'
+import Header from '../Header'
 
-export default (props) => {
+export default function Register() {
+  const [email, setEmail] = useState('antonia@gmail.com')
+  const [password, setPassword] = useState('antonia@123')
+
   const history = useHistory()
 
-  // function Redirect() {
-  //   history.push('/incidents')
-  // }
-  //  --------------------alteraçções--------------
-  const [lista, setLista] = useState([])
+  async function handleSubmit(e) {
+    e.preventDefault()
 
-  async function getProducts() {
-    const { data } = await api.get('/')
+    // console.log(email, password)
 
-    setLista(data)
-
-    return data
-  }
-
-  console.log('lista:', lista)
-
-  useEffect(() => {
-    getProducts()
-  })
-
-  async function handleDeleteProduct(id) {
     try {
-      await api.delete(`/delete/${id}`)
-      alert('Produto deletado com sucesso!')
-      history.push('/')
-    } catch (error) {
-      alert('ERRO do Front!')
-    }
-  }
+      const { data } = await api.post('/login', { email, password })
 
-  async function handleUpdateProduct(id) {
-    try {
-      localStorage.setItem('id', id)
+      if (!data.data) {
+        return alert('ERRO tudo CAGADO')
+      } else {
+        console.log('token: ', data.token)
 
-      history.push('/update')
+        // localStorage.setItem(('Token': 'valueTeste'))
+        // localStorage.setItem('ongId', data.email)
+
+        localStorage.setItem('token', data.token)
+        // history.push('/lista')
+        return alert('Login realizado com sucesso!')
+      }
+
+      // eslint-disable-next-line no-unreachable
     } catch (error) {
-      alert('ERRO do Front!')
+      return alert(`Deu erro no front ${error}`)
     }
   }
 
@@ -55,53 +41,43 @@ export default (props) => {
     localStorage.clear()
   }, [])
 
-  // //  --------------------alteraçções--------------
-
   return (
     <div className="container">
       <Header />
 
-      <div className="profile-container">
-        <h1>Produtos Cadastrados</h1>
-        <ul>
-          {lista.map((list) => (
-            <li key={list.id}>
-              <strong>CASO:</strong>
-              <p>{list.title}</p>
-              <img
-                src={`https://produtos-sistema-api.herokuapp.com/files/${list.image}`}
-                width={'20%'}
-                height={'25%'}
-                alt="imagem"
-              />
-              <br />
-              <strong>Descrição</strong>
-              <p>{list.description}</p>
-              <strong>Valor:</strong>
-              <p>
-                {Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                }).format(list.price)}
-              </p>
+      <form onSubmit={handleSubmit} className="janela">
+        <div className="profile-container">
+          <fieldset>
+            <legend>Login de Usuario</legend>
 
-              <button
-                type="button"
-                onClick={() => handleDeleteProduct(list._id)}
-              >
-                APAGAR - DELETAR
-              </button>
+            <div className="input-block">
+              <label htmlFor="name">Email</label>
               <br />
-              <button
-                type="button"
-                onClick={() => handleUpdateProduct(list._id)}
-              >
-                EDITAR
+              <input
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <label htmlFor="name">Password</label>
+              <br />
+              <input
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <div className="input-block">
+              <button className="confirm-button" type="submit">
+                Logar
               </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </fieldset>
+        </div>
+      </form>
     </div>
   )
 }
