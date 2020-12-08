@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
@@ -9,7 +9,7 @@ export default function RegisterUser() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const history = useHistory()
+  // const history = useHistory()
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -24,11 +24,10 @@ export default function RegisterUser() {
 
       await api.post('/user-register', data)
 
-      alert('Cadastro realizado com sucesso!')
-      return history.push('/')
+      return alert('Cadastro realizado com sucesso!')
     } catch (error) {
       console.log(error)
-      return alert(`Deu erro no front ${error}`)
+      // return alert(`Deu erro no front ${error}`)
     }
   }
 

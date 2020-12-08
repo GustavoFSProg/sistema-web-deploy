@@ -6,7 +6,7 @@ import './style.css'
 export default function Header() {
   return (
     <div className="container">
-      <div className="menu">
+      <div className="menu" style={{ background: '#a3c2c2' }}>
         <Link className="lista" to="/">
           Home
         </Link>

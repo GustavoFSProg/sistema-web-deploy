@@ -12,8 +12,8 @@ export default function Routes() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/lista" component={Listagem} />
-        <Route path="/register" component={Register} />
-        <Route path="/register-user" component={RegisterUser} />
+        {/* <Route path="/register" component={Register} /> */}
+        {/* <Route path="/register-user" component={RegisterUser} /> */}
         <Route path="/update" component={Update} />
       </Switch>
     </BrowserRouter>

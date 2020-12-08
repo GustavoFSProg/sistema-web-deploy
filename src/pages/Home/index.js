@@ -4,8 +4,8 @@ import './style.css'
 import Header from '../Header'
 
 export default function Register() {
-  const [email, setEmail] = useState('antonia@gmail.com')
-  const [password, setPassword] = useState('antonia@123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   // const history = useHistory()
 
@@ -64,6 +64,7 @@ export default function Register() {
               <br />
               <input
                 id="password"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
