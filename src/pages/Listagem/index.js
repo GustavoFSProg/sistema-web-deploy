@@ -51,9 +51,9 @@ export default function Listagem() {
     }
   }
 
-  useEffect(() => {
-    localStorage.clear()
-  }, [])
+  // useEffect(() => {
+  //   localStorage.clear()
+  // }, [])
 
   // //  --------------------alteraçções--------------
 

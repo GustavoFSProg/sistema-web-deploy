@@ -18,18 +18,32 @@ export default function ListaUsers() {
   const [lista, setLista] = useState([])
 
   async function getUsers() {
-    const { data } = await api.get('/users')
+    const token = localStorage.getItem('token')
 
-    setLista(data)
+    // console.log(token)
+
+    // alert('Entrou')
+
+    const { data } = await api.get(`/users`, {
+      headers: {
+        authorization: token,
+      },
+    })
+    console.log(data)
+
+    setLista(data.data)
+
+    // console.log(`Data: ${data}`)
+
+    console.log(lista)
 
     return data
   }
 
-  console.log('lista:', lista)
-
   useEffect(() => {
     getUsers()
-  })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lista])
 
   async function handleDeleteUser(id) {
     try {
@@ -51,9 +65,9 @@ export default function ListaUsers() {
   //   }
   // }
 
-  useEffect(() => {
-    localStorage.clear()
-  }, [])
+  // useEffect(() => {
+  //   localStorage.clear()
+  // }, [])
 
   // //  --------------------alteraçções--------------
 

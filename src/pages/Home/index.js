@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 export default function Register() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('vitoria@gmail.com')
+  const [password, setPassword] = useState('vitoria@123')
 
-  const history = useHistory()
+  // const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -27,7 +27,7 @@ export default function Register() {
         // localStorage.setItem('ongId', data.email)
 
         localStorage.setItem('token', data.token)
-        history.push('/lista')
+        // history.push('/lista')
         return alert('Login realizado com sucesso!')
       }
 
@@ -37,9 +37,9 @@ export default function Register() {
     }
   }
 
-  useEffect(() => {
-    localStorage.clear()
-  }, [])
+  // useEffect(() => {
+  //   localStorage.clear()
+  // }, [])
 
   return (
     <div className="container">
