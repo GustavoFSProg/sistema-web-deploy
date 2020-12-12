@@ -5,8 +5,8 @@ import Header from '../Header'
 // import { useHistory } from 'react-router-dom'
 
 export default function Register() {
-  const [email, setEmail] = useState('vitoria@gmail.com')
-  const [password, setPassword] = useState('vitoria@123')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   // const history = useHistory()
 
