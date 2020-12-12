@@ -24,10 +24,12 @@ export default function RegisterUser() {
 
       await api.post('/user-register', data)
 
+      localStorage.setItem('token', data.token)
+
       return alert('Cadastro realizado com sucesso!')
     } catch (error) {
       console.log(error)
-      // return alert(`Deu erro no front ${error}`)
+      return alert(`Deu erro no front ${error}`)
     }
   }
 

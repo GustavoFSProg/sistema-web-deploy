@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
+import { useHistory } from 'react-router-dom'
 
 export default function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  // const history = useHistory()
+  const history = useHistory()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -26,7 +27,7 @@ export default function Register() {
         // localStorage.setItem('ongId', data.email)
 
         localStorage.setItem('token', data.token)
-        // history.push('/lista')
+        history.push('/lista')
         return alert('Login realizado com sucesso!')
       }
 

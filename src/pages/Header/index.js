@@ -19,6 +19,9 @@ export default function Header() {
         <Link className="lista" to="/register-user">
           Register-User
         </Link>
+        <Link className="lista" to="/listaUsers">
+          Listagem Usuarios
+        </Link>
         <Link className="lista" to="/update">
           Update
         </Link>

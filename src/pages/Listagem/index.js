@@ -69,7 +69,8 @@ export default function Listagem() {
               <strong>CASO:</strong>
               <p>{list.title}</p>
               <img
-                src={`https://produtos-sistema-api.herokuapp.com/files/${list.image}`}
+                // src={`https://produtos-sistema-api.herokuapp.com/files/${list.image}`}
+                src={`http://localhost:3001/files/${list.image}`}
                 width={'20%'}
                 height={'25%'}
                 alt="imagem"
