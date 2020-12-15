@@ -35,7 +35,7 @@ export default function Listagem() {
     try {
       await api.delete(`/delete/${id}`)
       alert('Produto deletado com sucesso!')
-      history.push('/')
+      history.push('/lista')
     } catch (error) {
       alert('ERRO do Front!')
     }

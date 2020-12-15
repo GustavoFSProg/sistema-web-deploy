@@ -5,9 +5,9 @@ import './style.css'
 import Header from '../Header'
 
 export default function RegisterUser() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [name, setName] = useState('ana')
+  const [email, setEmail] = useState('ana@gmail.com')
+  const [password, setPassword] = useState('ana@123')
 
   // const history = useHistory()
 

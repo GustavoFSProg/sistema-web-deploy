@@ -47,27 +47,19 @@ export default function ListaUsers() {
 
   async function handleDeleteUser(id) {
     try {
-      await api.delete(`users-del/${id}`)
+      const token = localStorage.getItem('token')
+
+      await api.delete(`/users-del/${id}`, {
+        headers: {
+          authorization: token,
+        },
+      })
       alert('Usuario deletado com sucesso!')
       history.push('/listaUsers')
     } catch (error) {
       alert('ERRO do Front!')
     }
   }
-
-  // async function handleUpdateUser(id) {
-  //   try {
-  //     localStorage.setItem('id', id)
-
-  //     history.push('/')
-  //   } catch (error) {
-  //     alert('ERRO do Front!')
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   localStorage.clear()
-  // }, [])
 
   // //  --------------------alteraçções--------------
 
@@ -91,9 +83,6 @@ export default function ListaUsers() {
                 DELETAR
               </button>
               <br />
-              {/* <button type="button" onClick={() => handleUpdateUser(list._id)}>
-                EDITAR
-              </button> */}
             </li>
           ))}
         </ul>
