@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../service/api'
 import './style.css'
 import Header from '../Header'
@@ -37,9 +37,9 @@ export default function Register() {
     }
   }
 
-  // useEffect(() => {
-  //   localStorage.clear()
-  // }, [])
+  useEffect(() => {
+    localStorage.clear()
+  }, [])
 
   return (
     <div className="container">
